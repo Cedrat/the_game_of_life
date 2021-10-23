@@ -24,7 +24,7 @@ class ArrayLife
         void insertLife(Pos position, std::string sequence);
         char newState(int cell);
     public :
-        ArrayLife(int nb_rows, int nb_columns);
+        ArrayLife(int nb_rows, int nb_columns, int percent_of_empty_cells);
         ~ArrayLife();
 
         void addRandomLife();

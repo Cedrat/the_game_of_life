@@ -8,13 +8,23 @@
 Pos convert_pos_1d_in_2d(int actual_cell, int max_x, int max_y);
 int convert_pos_2d_in_1d(Pos position_cell, int max_x, int max_y);
 
-ArrayLife::ArrayLife(int nb_rows, int nb_columns) : _nb_rows(nb_rows), _nb_colums(nb_columns)
+ArrayLife::ArrayLife(int nb_rows, int nb_columns, int percent_of_empty_cells) : _nb_rows(nb_rows), _nb_colums(nb_columns)
 {
     int nb_cases = _nb_colums * _nb_rows;
 
-    std::vector<char>::iterator it_begin = _array.begin();
-    
-    _array.insert(it_begin, nb_cases, EMPTY_CASE);
+    std::srand(time(0));
+
+    char life[] = {EMPTY_CASE, CELL_CASE};
+    int tmp_rand;
+
+    for (int i = 0; i < nb_cases; i++)
+    {
+        tmp_rand = std::rand() % 100;
+        if (tmp_rand <= percent_of_empty_cells)
+            _array.push_back(EMPTY_CASE);
+        else
+            _array.push_back(CELL_CASE);
+    } 
 }
 
 ArrayLife::~ArrayLife()
