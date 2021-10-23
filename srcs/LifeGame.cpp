@@ -41,7 +41,7 @@ void LifeGame::printLife()
             temp_map += "\n";
     }
     system("clear");
-    std::cout << temp_map << std::endl;
+    std::cout << temp_map;
 }
 
 
