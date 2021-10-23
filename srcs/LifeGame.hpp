@@ -1,5 +1,5 @@
-#ifndef ARRAYLIFE_HPP
-# define ARRAYLIFE_HPP
+#ifndef LIFEGAME_HPP
+# define LIFEGAME_HPP
 
 #include <vector>
 #include <string>
@@ -14,7 +14,7 @@ struct Pos{
     int y;
 };
 
-class ArrayLife
+class LifeGame
 {
     private :
         std::vector<char> _array;
@@ -24,8 +24,8 @@ class ArrayLife
         void insertLife(Pos position, std::string sequence);
         char newState(int cell);
     public :
-        ArrayLife(int nb_rows, int nb_columns, int percent_of_empty_cells);
-        ~ArrayLife();
+        LifeGame(int nb_rows, int nb_columns, int percent_of_empty_cells);
+        ~LifeGame();
 
         void addRandomLife();
         void printLife();

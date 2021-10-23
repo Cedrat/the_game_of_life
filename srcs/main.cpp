@@ -1,16 +1,16 @@
 #include <string>
 #include <vector>
-#include "ArrayLife.hpp"
+#include "LifeGame.hpp"
 #include "unistd.h"
 
-
+#define ONE_FRAME_PER_SECOND 1000000
 
 int main(int argc, char **argv)
 {
     int width = 10;
     int heigth = 10;
     int percent_of_empty_cells = 50;
-    int framerate = 30;
+    int framerate = ONE_FRAME_PER_SECOND;
     if (argc >= 3)
     {
         width = atoi(argv[1]);
@@ -33,14 +33,16 @@ int main(int argc, char **argv)
     }
     if (argc >= 5)
     {
-        framerate = 1000000/atoi(argv[4]);
-        if (framerate < 0)
+        int arg_framerate = atoi(argv[4]);
+        if (arg_framerate <= 0)
         {
-            std::cout << "Please choose a position framerate (fps)" << std::endl;
+            std::cout << "Please choose a positive framerate (fps)" << std::endl;
             return 0;
         }
+        framerate /= arg_framerate;
     }
-    ArrayLife life(width, heigth, percent_of_empty_cells);
+    
+    LifeGame life(width, heigth, percent_of_empty_cells);
     while (1)
     {
         usleep(framerate);
