@@ -13,16 +13,16 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 $(PATH_OBJS)%.o : %.cpp
-	$(CXX) -c $(CFLAGS) -std=c++98 $< -o $@
+	$(CXX) -c $(CFLAGS) $< -o $@
 
-all : 		${NAME}
+all : 		${PATH_OBJS} ${NAME} 
 
-${NAME}:	${OBJS}
-			clang++ -std=c++98 -o ${NAME} ${CFLAGS} ${OBJS} 
+${NAME}:	${OBJS} 
+			$(CXX)  -o ${NAME} ${CFLAGS} ${OBJS} 
 			@echo "\n\033[032;1mexample of use : ./game_of_life [width height][percent of empty cells][frame per second]\033[0m\n"
 
 clean :		
-			${RM} ${OBJS} ${BONUS}
+			${RM} ${OBJS}
 
 fclean :	clean
 			${RM} ${NAME}
@@ -31,3 +31,5 @@ re :		fclean all
 
 ${PATH_OBJS}:
 	mkdir -p $@
+
+.PHONY : all clean fclean re
